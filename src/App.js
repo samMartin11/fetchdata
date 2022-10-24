@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from "react";
+import UserWelcome from "./Components/UserWelcome";
+import Todos from "./Components/Todos";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <span>
+      <h2>Simple Todo</h2>
+      <Suspense revealOrder="forwards">
+        <Suspense fallback={<p>Loading user details...</p>}>
+          <UserWelcome />
+        </Suspense>
 
+        <Suspense fallback={<p>Loading Todos...</p>}>
+          <Todos />
+        </Suspense>
+      </Suspense>
+    </span>
+  );
+};
 export default App;
